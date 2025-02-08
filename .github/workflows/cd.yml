@@ -1,9 +1,10 @@
 name: Deploy Fake 
 on: 
     workflow_call: 
-        secrets: 
-            ambiente:
-                description: "Ambiente onde vai ser feito o deploy"
+       # Para usar com parametro
+        # secrets: 
+       #     ambiente:
+       #         description: "Ambiente onde vai ser feito o deploy"
 jobs: 
     deploy-fake:
         runs-on: ubuntu-latest
