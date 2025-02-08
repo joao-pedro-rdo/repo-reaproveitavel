@@ -9,6 +9,6 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Deploy no ambiente
-              run: echo "Executando o deploy no ambiente de ${{ secrets.ambiente }}"
+              run: echo "Executando o deploy no ambiente de ${{ secrets.AMBIENTE_ENTREGA }}"
             - name:
-              run: "curl -X POST https://webhook.site/e2a61dd6-2c80-4974-a4a2-68e9991bb16a -d '{ ambniente: ${{ secrets.ambiente}}}'"
+              run: "curl -X POST https://webhook.site/e2a61dd6-2c80-4974-a4a2-68e9991bb16a -d '{ ambniente: ${{ secrets.AMBIENTE_ENTREG}}}'"
