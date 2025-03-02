@@ -1,5 +1,10 @@
 name: Repository_dispatch
 on: 
+    workflow_call:
+      inputs:
+        ambiente:
+          type:  string
+          required: true
     repository_dispatch:
       types: 
         - deploy-remoto 
@@ -10,6 +15,6 @@ jobs:
         steps:
             - name: Deploy no ambiente
               # usamos diferente do que secret e sim no modo que vai o playloaf no json
-              run: echo "Executando o deploy no ambiente de ${{ github.event.client_payload.ambiente }}"
+              run: echo "Executando o deploy no ambiente de ${{ inputs.ambiente || github.event.client_payload.ambiente }}"
             - name:
-              run: "curl -X POST https://webhook.site/9a0e0039-2048-482b-aeae-e60f761e5141 -d '{ ambiente: ${{ github.event.client_payload.ambiente }}}'"
+              run: "curl -X POST https://webhook.site/9a0e0039-2048-482b-aeae-e60f761e5141 -d '{ ambiente: ${{  inputs.ambiente || github.event.client_payload.ambiente }}}'"
