@@ -1,4 +1,4 @@
-name: Deploy Fake 
+name: Workflow_call
 on: 
     workflow_call: 
        # Para usar com parametro
