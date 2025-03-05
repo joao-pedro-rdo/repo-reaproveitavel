@@ -1,4 +1,4 @@
-name: CD Fake
+name: Teste-enviroment
 on:
   workflow_dispatch:
     inputs:
