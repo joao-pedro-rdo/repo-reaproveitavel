@@ -12,4 +12,10 @@ jobs:
                 echo "::warning:: Mensagegm de Log warning"
                 echo "::notice:: Mensagegm de Log notice"
                 echo "::error:: Mensagegm de Log error Executado por ${{ github.actor }}"
-                
+            - name: Adicionando Logs Agrupados 
+              run: |
+                echo "::group:: Grupo de logs"
+                echo "::Informaçã 1"
+                echo "::Informaçã 2"
+                echo "::Informaçã 3"    
+                echo "::endgroup::"
