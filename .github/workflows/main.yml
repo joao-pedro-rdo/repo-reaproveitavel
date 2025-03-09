@@ -13,7 +13,7 @@ jobs:
               run: echo "Publicação da Relase final"
     CD:
         needs: [CI]
-        uses: joao-pedro-rdo/repo-reaproveitavel/.github/workflows/cd.yml@main 
+        uses: joao-pedro-rdo/repo-reaproveitavel/.github/workflows/repository_dispatch.yml@main 
         # Passando por herança
         secrets: inherit
 

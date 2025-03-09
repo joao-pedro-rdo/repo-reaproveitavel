@@ -1,0 +1,15 @@
+name: LOGS
+on: 
+   workflow_dispatch:
+jobs:
+    build:
+        runs-on:
+            ubuntu-latest
+        steps:
+            - name: Adicionando Log
+              run: |
+                echo "::debug:: Mensagegm de Log debug"
+                echo "::warning:: Mensagegm de Log warning"
+                echo "::notice:: Mensagegm de Log notice"
+                echo "::error:: Mensagegm de Log error Executado por ${{ github.actor }}"
+                
