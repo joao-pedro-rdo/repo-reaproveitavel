@@ -1,0 +1,24 @@
+name: Scan Hadolint 
+run-name:  Scaner do dockerfile com hadolint por ${{ github.actor }} - ${{ github.run_number}}
+on:
+  workflow_dispatch:
+  #push:
+   
+    #branches:
+      #- develop # Altere para o branch que desejar monitorar
+    #paths-ignore:
+    #  - '**.md'
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+        - name: Checkout
+          uses: actions/checkout@v3
+        - name: Analise Dockerfile Back
+          uses: hadolint/hadolint-action@v3.1.0
+          with:
+            dockerfile: ./back/Dockerfile-back
+        - name: Analise Dockerfile Front
+          uses: hadolint/hadolint-action@v3.1.0
+          with:
+            dockerfile: ./back/Dockerfile-front

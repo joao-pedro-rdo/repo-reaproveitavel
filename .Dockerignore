@@ -1,0 +1,18 @@
+# Arquivo para ignorar oq vai pra imagem docker
+# Ignora dependências locais
+node_modules/
+# Ignora arquivos de log
+*.log
+
+# Ignora configurações de IDE
+.vscode/
+.idea/
+
+# Ignora artefatos de build
+dist/
+build/
+
+# Ignora arquivos sensíveis
+.env
+
+.gitignore

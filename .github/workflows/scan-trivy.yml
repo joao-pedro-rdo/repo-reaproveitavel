@@ -1,0 +1,53 @@
+name: Scan-tivy
+run-name:  Scaner da imagem com trivy por ${{ github.actor }} - ${{ github.run_number}}
+on:
+  workflow_dispatch:
+    inputs:
+      versao:
+        type: string
+        required: false
+        default: latest
+        description: "versao a ser analisada"
+    #branches:
+      #- develop # Altere para o branch que desejar monitorar
+permissions:
+  actions: read 
+  contents: read
+  security-events: write
+jobs:
+  trivy-scan:
+    runs-on: ubuntu-latest
+    steps:
+        - name: Checkout
+          uses: actions/checkout@v3
+        - name: Run Trivy vulnerability scanner
+          uses: aquasecurity/trivy-action@0.28.0
+          with:
+          #${{ secrets.DOCKER_USERNAME }}/controle-gda-front:latest
+            image-ref: 'docker.io/joaoprdo/controle-gda-front:${{ inputs.versao }}'
+            format: sarif #table
+#            format: table
+            exit-code: '0' # se for 1 para a pipeline achando a vulnerabilidade
+            ignore-unfixed: true
+            vuln-type: 'os,library'
+            severity: 'LOW,MEDIUM,HIGH,CRITICAL'
+            scan-type: 'image' #fb
+         
+         
+            #REPO TEM QUE SER PUBLICO PRA HABILITAR O CODE SACANIG E PODER TER ISSO
+            output: trivy-docker-result.sarif #fb
+#        - name: Upload do arquivo trivy para o github
+#          uses: github/codeql-action/upload-sarif@v3
+#          with:
+#            sarif_file: trivy-docker-result.sarif
+#            category: docker-result
+
+
+        - name: Upload Trivy scan results
+          uses: actions/upload-artifact@v4
+          with:
+            # Nome que o artefato terá na página de download do GitHub Actions.
+            name: trivy-docker-result
+            # Caminho para o arquivo que deve ser incluído no artefato.
+            path: 'trivy-docker-result.sarif'
+             
